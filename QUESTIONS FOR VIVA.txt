@@ -1,0 +1,121 @@
+QUESTIONS FOR VIVA
+
+   1. What is meant by package?
+Sol : Package is collection of classes(template used to create object & to define object) and interface(specifies the behavior of a class by providing an abstract type).
+
+   2. What is interface? How to create interface?
+Sol : Specifies the behavior of a class by providing an abstract type. Interfaces can have abstract methods and variables. It cannot have a method body. Java Interface also represents the IS-A relationship. 
+
+   3. What is JSP(JavaServerPages)?
+Sol : to insert Java code into HTML pages.
+
+   4. What is JDBC? Which package is required for database connectivity?
+Sol : Java Database Connectivity or JDBC is a Java API to link and execute a query with the database. In other words, it is an Application Programming Interface (API) for the Java platform, which helps with interaction and for executing the SQL query. JDBC package is required for database connectivity.
+
+   5. What is servlet?
+Sol : A servlet is a Java programming language class that is used to extend the capabilities of servers that host applications accessed by means of a request-response programming model. Although servlets can respond to any type of request, they are commonly used to extend the applications hosted by web servers.
+
+   6. List names of JComponents in swing.
+Sol : JComponent class are JButton, JScrollPane, JPanel, JTable, JColorChooser, JProgressBar.
+
+   7. What is class? How to create object of class?
+Sol : A template used to create objects and to define object data types and methods. Using the new keyword in java is the most basic way to create an object.
+
+   8. What is Inheritance? Explain types of Inheritance.
+Sol : Inheritance in Java is a concept that acquires the properties from one class to other classes. Types of Inheritance in Java: Single, Multiple, Multilevel & Hybrid.
+
+   9. What is mean by exception?
+Sol : An exception is an event, which occurs during the execution of a program, that disrupts the normal flow of the program's instructions.
+
+  10. What are types of exception?
+Sol : NullPointerException
+IOException
+ArithmeticException
+ArrayIndexOutOfBoundsException
+ClassNotFoundException
+IllegalArgumentException
+NumberFormatException
+RuntimeException
+IllegalStateException
+
+  11. Which keywords are used for handling exception?
+Sol : try
+
+The “try” keyword is used to specify the exception block
+
+catch
+
+The “catch” keyword is used to specify the solution
+
+finally
+
+The “finally” keyword has a mandatorily executable code
+
+throw
+
+The “throw” keyword throws an exception
+
+throws
+
+The “throws” keyword is used to declare an exception
+
+  12. How to inherit properties of parent class into child class?
+Sol : super() method
+
+  13. What is difference between error and exception?
+Sol : Errors occur at compile time and run time, which can terminate the compilation or execution. Exceptions occur only at run time, just that checked exceptions can be detected at compile time. Errors are also unchecked like Runtime Exceptions. Exceptions provide you the opportunity to make your program run in normal flow.
+
+  14. How to create database in postgreSQL?
+Sol : CREATE DATABASE db_name.
+OWNER = role_name.
+TEMPLATE = template.
+ENCODING = encoding.
+LC_COLLATE = collate.
+LC_CTYPE = ctype.
+TABLESPACE = tablespace_name.
+CONNECTION LIMIT = max_concurrent_connection.
+
+  15. What is mean by collection?
+Sol : A collection is an object that represents a group of objects.
+
+  16. What is linked list collection?
+Sol : The LinkedList stores its items in "containers."
+
+  17. Why we use hashtable in java collection framework?
+Sol : Hashtable in java maps the keys to values. 
+
+  18. What are the types of JDBC driver?
+Sol : 1. JDBC-ODBC Bridge plus ODBC driver , also called Type 1
+      2. Native-API , partly Java driver , also called Type 2
+      3. JDBC-Net , pure Java driver , also called Type 3
+      4. Native-protocol , pure Java driver , also called Type 4
+
+  19. What are the steps to connect to the database in Java?
+Sol :  Step 1 – Import the Packages.
+       Step 2 – Load the drivers using the forName() method.
+       Step 3 – Register the drivers using DriverManager.
+       Step 4 – Establish a connection using the Connection class object.
+       Step 5 – Create a statement.
+       Step 6 – Execute the query.
+
+  20. How to get input from user?
+Sol : The easiest way to get user input in Java is by using the Scanner class from the java. util package. 
+
+  21. What is mean by command line argument?
+Sol : Command-line arguments in Java are used to pass arguments to the main program.
+
+  22. Constructor and types of constructor 
+Sol : A constructor in Java is a special method that is used to initialize objects. The constructor is called when an object of a class is created.
+Types of Constructor in Java
+Default Constructor.
+No-Args constructor.
+Parameterized constructor.
+
+  23. What is mean by abstract class?
+Sol : Abstract class: is a restricted class that cannot be used to create objects (to access it, it must be inherited from another class).
+
+  24. What is MVC architecture?
+Sol : The Model View Controller (MVC) design pattern specifies that an application consists of a data model, presentation information, and control information.
+
+  25. Which package is required for scanner class? How to create scanner class?
+Sol : Java Scanner class is part of the java. util package. The Scanner is mostly used to receive user input and parse them into primitive data types such as int, double or default String.
