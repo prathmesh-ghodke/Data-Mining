@@ -1,0 +1,6 @@
+,Id,Sepal Length Cm,Sepal Width Cm,Petal Length Cm,Petal Width Cm,Species
+0,1,1,0,0,0,Iris-setosa
+1,2,0,1,1,1,Iris-setosa
+2,3,1,0,0,1,Iris-setosa
+3,4,1,0,0,0,Iris-setosa
+4,5,0,1,0,0,Iris-setosa

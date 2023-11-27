@@ -1,0 +1,923 @@
+Slip 1
+Q1. Write a R program to add, multiply and divide two vectors of integertype. (Vector length
+should be minimum 4
+:-
+vector1<-c(1,2,3,4,5)
+vector2<-c(4,5,6,7,8)
+sum<-vector1+vector2
+cat("sum of vector is:",sum,"\n")
+mul<-vector1*vector2
+cat("multiplication",mul,"\n")
+div<-vector1/vector2
+cat("division",div,"\n")
+
+Q2.Consider the student data set. It can be downloaded from: 
+https://drive.google.com/open?id=1oakZCv7g3mlmCSdv9J8kdSaqO 5_6dIOw .
+ Write a programme in python to apply simple linear regression and find out mean absolute error, 
+mean squared error and root mean squared error. 
+:-
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split 
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_absolute_error,mean_squared_error
+import math
+
+data = pd.read_csv("Student_Marks.csv")
+
+x = data['number_courses'].values.reshape(-1,1)
+y = data['time_study'].values
+
+x_train, x_test, y_train, y_test = train_test_split(x,y,test_size=0.2,random_state=42)
+
+regressor = LinearRegression()
+regressor.fit(x_train, y_train)
+
+y_pred = regressor.predict(x_test)
+
+mae = mean_absolute_error(y_test, y_pred)
+mse = mean_squared_error(y_test, y_pred)
+rmse = math.sqrt(mse)
+
+print("Mean Absolute Error:", mae)
+print("Mean Squared Error:", mse)
+print("Root Mean Squared Error:", rmse)
+
+Slip 2
+Q1. Write an R program to calculate the multiplication table using a function
+:-
+  vector<-function(n,a)
+  for(i in 1:a)
+  {
+    result=n*i
+    cat(paste(n,"X",i,"=",result,"\n"))
+  }
+   number<-5
+   a<-10
+   vector(number,a)
+  
+Q2.Write a python program to implement k-means algorithms on asynthetic dataset.
+:-
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+from sklearn.datasets import make_blobs
+
+# Generate a synthetic dataset
+n_samples = 300
+n_features = 2
+n_clusters = 4
+
+X, y = make_blobs(n_samples=n_samples, n_features=n_features, centers=n_clusters, random_state=42)
+
+# Apply K-means clustering
+kmeans = KMeans(n_clusters=n_clusters)
+kmeans.fit(X)
+y_kmeans = kmeans.predict(X)
+
+# Visualize the clustering results
+plt.scatter(X[:, 0], X[:, 1], c=y_kmeans, s=50, cmap='viridis')
+centers = kmeans.cluster_centers_
+plt.scatter(centers[:, 0], centers[:, 1], c='red', s=200, alpha=0.9)
+plt.title("K-means Clustering")
+plt.show()
+
+Slip 3
+Q1. Write a R program to reverse a number and also calculate the sum of digits of that number.
+:-
+num=123
+sum=0
+rev=0
+while(num>0)
+{
+  r=num%%10
+  sum=sum+r
+  rev=rev*10+r
+  num=num%/%10
+}
+cat(paste("reverse num is:",rev))
+cat(paste("sum of digit is:",sum))
+  
+Q2Q. Consider the following observations/data. And apply simple linear regression 
+and findout estimated coefficients b0 and b1.( use numpypackage) 
+x=[0,1,2,3,4,5,6,7,8,9,11,13]
+y = ([1, 3, 2, 5, 7, 8, 8, 9, 10, 12,16, 18]
+:-
+import numpy as np
+
+# Given data
+x = np.array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 13])
+y = np.array([1, 3, 2, 5, 7, 8, 8, 9, 10, 12, 16, 18])
+
+# Calculate the means of x and y
+mean_x = np.mean(x)
+mean_y = np.mean(y)
+
+# Calculate the slope (b1) and intercept (b0) of the regression line
+numerator = np.sum((x - mean_x) * (y - mean_y))
+denominator = np.sum((x - mean_x) ** 2)
+b1 = numerator / denominator
+b0 = mean_y - b1 * mean_x
+
+# Print the estimated coefficients
+print("Estimated coefficient b0 (intercept):", b0)
+print("Estimated coefficient b1 (slope):", b1)
+
+Slip 4
+Q1 Write a R program to calculate the sum of two matrices of given size.
+:-
+MatrixA <- matrix(data=1.9,nrow=3,ncol=3)
+ MatrixA <- matrix(data=1:9,nrow=3,ncol=3)
+ MatrixA 
+   
+ MatrixB <- matrix(data=1:9,nrow=3,ncol=3)
+ MatrixB 
+    
+ Add <- MatrixA+MatrixB
+ Add 
+    
+Q2. Consider following dataset 
+weather=['Sunny','Sunny','Overcast','Rainy','Rainy','Rainy','Overcast',
+'Sunny','Sunny','Rainy','Sunny','Overcast','Overcast','Rainy']
+temp=['Hot','Hot','Hot','Mild','Cool','Cool','Cool','Mild','Cool','Mild','Mild','Mild','Hot','Mild'] 
+play=['No','No','Yes','Yes','Yes','No','Yes','No','Yes','Yes','Yes','Yes','Yes','No'].
+Use Naïve Bayes algorithm to predict [0: Overcast, 2: Mild]tuple belongs to which classwhether 
+to play the sports or not
+:-
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+import sklearn
+weather=['Sunny','Sunny','Overcast','Rainy','Rainy','Rainy','Overcast','Sunny','Sunny',
+'Rainy','Sunny','Overcast','Overcast','Rainy']
+temp=['Hot','Hot','Hot','Mild','Cool','Cool','Cool','Mild','Cool','Mild','Mild','Mild','Hot','Mild']
+
+play=['No','No','Yes','Yes','Yes','No','Yes','No','Yes','Yes','Yes','Yes','Yes','No']
+from sklearn.preprocessing import LabelEncoder 
+le = LabelEncoder()
+w_encode=le.fit_transform(weather)
+print("Weather",w_encode)
+t_encode=le.fit_transform(temp)
+label=le.fit_transform(play)
+print ("Temp:",t_encode)
+print ("Play:",label)
+features = list(zip(w_encode, t_encode))
+print(features)
+#Import Gaussian Naive Bayes model
+from sklearn.naive_bayes import GaussianNB
+#Create a Gaussian Classifier
+classifier = GaussianNB()
+classifier.fit(features,label)
+predicted= classifier.predict([[0,2]]) # 0:Overcast, 2:Mild   #1:yes, 0:no
+print("Predicted value:",predicted)
+
+Slip 5
+Q1.Write a R program to concatenate two given factors
+:-
+ factor1 <- c("1","2","3")
+ factor2 <- c("4","5","6")
+
+ combined <- factor(c(factor1,factor2))
+ cat("combined factor:")
+cat(combined)
+
+Q2.Q. Write a Python program build Decision Tree Classifier using Scikit- learn package for diabetes data set
+ (download database from https://www.kaggle.com/uciml/pima-indians -diabetes-database)
+:-
+import pandas as pd
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import train_test_split
+from sklearn import metrics
+#import dataset
+dataset= pd.read_csv("diabetes.csv")
+dataset.head()
+#feature Scaling
+feature_cols = ['Pregnancies','Insulin','BMI','Age','Glucose','BloodPressure','DiabetesPedigreeFunction']
+x = dataset[feature_cols]
+y = dataset.Outcome      
+print(x)
+print(y)
+#splitting of dataset into training and test set
+x_train, x_test, y_train, y_test = train_test_split(x,y, test_size=0.3, random_state=1)
+#Creating Decision tree classifier
+classifier = DecisionTreeClassifier() #create decision tree classifier object
+classifier = classifier.fit(x_train,y_train) #train decision tree classifier
+y_pred = classifier.predict(x_test) #predicting the test dataset
+print("Accuracy:", metrics.accuracy_score(y_test,y_pred))
+#creating confusion matrix
+from sklearn.metrics import confusion_matrix
+cm= confusion_matrix(y_test,y_pred)
+print(cm)
+
+Slip 6
+Q1. Write a R program to create a data frame using two given vectors and displaythe duplicate elements.
+ :-
+ a <- c("Pooja","Peter","Neha","Neha","Pooja")
+ b <- c(23,45,67,67,23)
+my_data_frame <- data.frame(name=a,age=b)
+ print("Original data frame:")
+
+
+ print(my_data_frame)
+  
+ duplicated_elements <- my_data_frame[duplicated(my_data_frame),]
+ print(duplicated_elements)
+  
+Q2.Q. Write a python program to implement hierarchical Agglomerative clusteringalgorithm.(Download Customer.csv dataset from github.com).
+:-
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.cluster import AgglomerativeClustering
+from scipy.cluster.hierarchy import dendrogram, linkage
+from sklearn.preprocessing import OneHotEncoder
+data = pd.read_csv("customers.csv")
+features = data[['Milk', 'Fresh']]
+encoder = OneHotEncoder(sparse=False)
+encoded_features = encoder.fit_transform(features)
+n_clusters = 5  
+agglomerative_cluster = AgglomerativeClustering(n_clusters=n_clusters, linkage='ward') 
+clusters = agglomerative_cluster.fit_predict(encoded_features)
+linkage_matrix = linkage(encoded_features, method='ward')
+dendrogram(linkage_matrix)
+plt.show()
+data['Cluster'] = clusters
+print(data[['Frozen', 'Cluster']])
+
+Slip 7
+Q1. Write a R program to create a seqnce of numbers from 20 to 50 and
+ findthe mean ofnumbers from 20 to 60 and sum of numbers from 51 to 91.
+:-
+numbers from 20 to 60 and sum of numbers from 51 to 91.
+sequence_20_to_50 <- seq(20, 50)
+mean_20_to_60 <- mean(seq(20, 60))
+sum_51_to_91 <- sum(seq(51, 91))
+print(paste("Sequence from 20 to 50:", toString(sequence_20_to_50)))
+print(paste("Mean of numbers from 20 to 60:", mean_20_to_60))
+print(paste("Sum of numbers from 51 to 91:", sum_51_to_91))
+
+Q2. Consider the following observations/data. And apply simple linear regression and find out
+estimated coefficients b1 and b1 Also analyse theperformance of the model
+(Use sklearn package) x = np.array([1,2,3,4,5,6,7,8])	
+:-
+import numpy as np
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import r2_score
+
+# Given data
+x = np.array([1, 2, 3, 4, 5, 6, 7, 8])
+y = np.array([7, 14, 15, 18, 19, 21, 26, 23])
+
+# Create a Linear Regression model
+model = LinearRegression()
+
+# Fit the model to the data
+x = x.reshape(-1, 1)  # Reshape x to be a 2D array
+model.fit(x, y)
+
+# Get the estimated coefficients
+b0 = model.intercept_
+b1 = model.coef_[0]
+
+# Print the estimated coefficients
+print("Estimated coefficient b0 (intercept):", b0)
+print("Estimated coefficient b1 (slope):", b1)
+
+# Analyze the model's performance
+y_pred = model.predict(x)  # Make predictions
+r_squared = r2_score(y, y_pred)  # Calculate R-squared
+print("R-squared (Coefficient of Determination):", r_squared)
+
+Slip 8
+Q1. Write a R program to get the first 10 Fibonacci numbers.	
+:-
+fibonacci <- function(n) {
+  if (n == 1) {
+    return(0)
+  } else if (n == 2) {
+    return(1)
+  } else {
+    return(fibonacci(n - 1) + fibonacci(n - 2))
+  }
+}
+fibonacci_numbers <- sapply(1:10, fibonacci)
+print(paste("First 10 Fibonacci numbers:", toString(fibonacci_numbers)))
+
+Q2. Write a python program to implement k-means algorithm to build prediction model (Use
+Credit Card Dataset CC GENERAL.csv Download from kaggle.com) 
+:-
+import pandas as pd
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import StandardScaler
+import matplotlib.pyplot as plt
+
+# Load the dataset
+df = pd.read_csv("CC GENERAL.csv")
+
+# Remove non-essential columns and handle missing values (you may need to adjust this based on your data)
+df = df.drop(['CUST_ID'], axis=1)
+df = df.fillna(method='ffill')
+
+# Standardize the data
+scaler = StandardScaler()
+scaled_data = scaler.fit_transform(df)
+
+# Determine the optimal number of clusters using the Elbow Method
+wcss = []
+for i in range(1, 11):
+    kmeans = KMeans(n_clusters=i, init='k-means++', max_iter=300, n_init=10, random_state=0)
+    kmeans.fit(scaled_data)
+    wcss.append(kmeans.inertia_)
+
+# Plot the Elbow Method graph to find the optimal number of clusters
+plt.plot(range(1, 11), wcss)
+plt.title('Elbow Method')
+plt.xlabel('Number of clusters')
+plt.ylabel('WCSS')  # Within-Cluster-Sum-of-Squares
+plt.show()
+
+# Based on the Elbow Method, select the optimal number of clusters
+optimal_clusters = 3  # Adjust this based on the Elbow Method graph
+
+# Apply K-means clustering with the chosen number of clusters
+kmeans = KMeans(n_clusters=optimal_clusters, init='k-means++', max_iter=300, n_init=10, random_state=0)
+kmeans.fit(scaled_data)
+
+# Add cluster labels to the dataset
+df['Cluster'] = kmeans.labels_
+
+# Now you can use the 'Cluster' column as a feature for prediction or analysis
+
+# For example, you can print the counts of data points in each cluster
+print(df['Cluster'].value_counts())
+
+# You can explore and analyze your dataset with the cluster labels added
+print(df.head())
+
+Slip 9
+Q1. Write an R program to create a Data frames which contain details of 5 employees 
+and display summary of the data.	
+:-
+  employee_data <- data.frame(
+  Employee_ID = c(1, 2, 3, 4, 5),
+  Name = c("John", "Alice", "Bob", "Eva", "Mike"),
+  Age = c(30, 25, 35, 28, 32),
+  Department = c("IT", "HR", "Finance", "Marketing", "Operations"),
+  Salary = c(60000, 50000, 70000, 55000, 75000))
+print("Employee Data:")
+print(employee_data)
+summary(employee_data)
+
+Q2. Write a Python program to build an SVM model to Cancer dataset. 
+The dataset is available in the scikit-learn library. Check the accuracy of model with precision and
+recall.
+:-
+import numpy as np
+import pandas as pd
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score, precision_score, recall_score
+
+# Load the breast cancer dataset
+data = load_breast_cancer()
+X = data.data
+y = data.target
+
+# Split the dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Create an SVM classifier
+svm_classifier = SVC(kernel='linear', C=1.0, random_state=42)
+
+# Fit the SVM model to the training data
+svm_classifier.fit(X_train, y_train)
+
+# Make predictions on the test set
+y_pred = svm_classifier.predict(X_test)
+
+# Calculate accuracy, precision, and recall
+accuracy = accuracy_score(y_test, y_pred)
+precision = precision_score(y_test, y_pred)
+recall = recall_score(y_test, y_pred)
+
+# Print the results
+print("Accuracy:", accuracy)
+print("Precision:", precision)
+print("Recall:", recall)
+
+Slip 10
+Q1. Write a R program to find the maximum and the minimum value of a given vector 
+:-
+my_vector <- c(3, 8, 1, 5, 7)
+max_value <- max(my_vector)
+min_value <- min(my_vector)
+cat("Maximum Value:", max_value, "\n")
+cat("Minimum Value:", min_value,"\n")
+
+Q2. Write a Python Programme to read the dataset (“Iris.csv”). dataset download from
+(https://archive.ics.uci.edu/ml/datasets/iris) and apply Apriori algorithm
+:-
+import pandas as pd
+from mlxtend.frequent_patterns import apriori
+from mlxtend.frequent_patterns import association_rules
+
+# Load the Iris dataset
+data = pd.read_csv("Iris.csv")
+
+# Drop any non-numeric columns
+data = data.drop(["Species"], axis=1)
+
+# Define a function to convert numeric values to binary (0 or 1)
+def encode_units(x):
+    if x <= 0:
+        return 0
+    if x >= 1:
+        return 1
+
+# Apply the encoding function to the dataset
+data = data.applymap(encode_units)
+
+# Use Apriori to find frequent item sets
+frequent_itemsets = apriori(data, min_support=0.6, use_colnames=True)
+
+# Print the frequent item sets
+print("Frequent Item Sets:")
+print(frequent_itemsets)
+
+# Find association rules
+association_rules_df = association_rules(frequent_itemsets, metric="lift", min_threshold=1.0)
+
+# Print the association rules
+print("\nAssociation Rules:")
+print(association_rules_df)
+
+Slip 11
+Q1. Write a R program to find all elements of a given list that are not inanother given list.
+st("x", "y", "z")
+=AB= list("X", "Y", "Z", "x", "y", "z") 
+:-
+A <- list("x", "y", "z")
+B <- list("X", "Y", "Z", "x", "y", "z")
+result <- setdiff(A, B)
+print(result)
+
+Q2. Write a python program to implement hierarchical clustering algorithm.
+(Download Wholesale customers data dataset from github.com).
+:-
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.cluster import AgglomerativeClustering
+from sklearn.preprocessing import StandardScaler
+from scipy.cluster.hierarchy import dendrogram, linkage
+
+# Load the Wholesale Customers dataset
+data = pd.read_csv("customer.csv")
+
+# Select features for clustering
+X = data[['Fresh', 'Milk']]  # Replace 'Feature1', 'Feature2', ... with actual features
+
+# Standardize the data
+scaler = StandardScaler()
+X_std = scaler.fit_transform(X)
+
+# Perform hierarchical clustering
+linkage_matrix = linkage(X_std, method='ward')
+
+# Plot the dendrogram
+dendrogram(linkage_matrix)
+plt.show()
+
+# Fit Agglomerative Clustering
+n_clusters = 3  # You can choose the number of clusters
+agg_clustering = AgglomerativeClustering(n_clusters=n_clusters)
+clusters = agg_clustering.fit_predict(X_std)
+
+# Print cluster assignments
+print("Cluster Assignments:", clusters)
+
+Slip 12
+Q1. Write a R program to create a Dataframes which contain details of 5employees and display the details.
+Employee contain(empno,empname,gender,age,designation)
+:-
+employee_data <- data.frame(
+  empno = c(101, 102, 103, 104, 105),
+  empname = c("John", "Alice", "Bob", "Eva", "Mike"),
+  gender = c("Male", "Female", "Male", "Female", "Male"),
+  age = c(28, 25, 32, 29, 35),
+  designation = c("Manager", "Engineer", "Analyst", "Manager", "Developer"))
+print(employee_data)
+
+Q2. Write a python program to implement multiple Linear Regression modelfor a car dataset. Dataset can be downloaded from:
+https://www.w3schools.com/python/python_ml_multiple_regression.asp
+:-
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+
+# Load the dataset
+data = pd.read_csv("multiple_Regression.csv")  
+# Make sure to provide the correct path to your dataset
+
+# Select the features (independent variables) and the target variable (dependent variable)
+X = data[[ 'Volume', 'Weight']]
+y = data['CO2']
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Create and fit a multiple linear regression model
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+# Make predictions on the test data
+y_pred = model.predict(X_test)
+
+# Evaluate the model (you can use various metrics)
+from sklearn.metrics import mean_squared_error, r2_score
+
+mse = mean_squared_error(y_test, y_pred)
+r_squared = r2_score(y_test, y_pred)
+
+print("Mean Squared Error:", mse)
+print("R-squared:", r_squared)
+
+# Print the coefficients and intercept
+print("Coefficients:", model.coef_)
+print("Intercept:", model.intercept_)
+
+Slip 13
+Q1.Draw a pie chart using R programming for the following datadistribution:
+Digits on Dice	1	2	3	4	5	6
+FreQncy of getting each number	7	2	6	3	4	8
+:-
+digits_distribution <- c(7, 2, 6, 3, 4, 8)
+labels <- c("1", "2", "3", "4", "5", "6")
+pie(digits_distribution,labels =labels, main = "dice data Distribution", col = rainbow(length(labels)))
+legend("topright", legend = labels, fill = rainbow(length(labels)))
+
+Q2.Write a Python program to read “StudentsPerformance.csv” file. Solvefollowing:
+-To display the shape of dataset.
+-To display the top rows of the dataset with their columns.Note: Download dataset from following link :
+(https://www.kaggle.com/spscientist/students-performance-inexams?select=StudentsPerformance.csv)
+:-
+import pandas as pd
+
+# Load the dataset
+df = pd.read_csv("StudentsPerformance.csv")
+
+# Display the shape of the dataset
+print("Shape of the dataset:", df.shape)
+
+# Display the top rows of the dataset with their columns
+print("\nTop rows of the dataset:")
+print(df.head())
+
+# Display the number of rows randomly (e.g., first 5 rows)
+num_random_rows = 5
+print(f"\nRandom {num_random_rows} rows:")
+print(df.sample(num_random_rows))
+
+# Display the number of columns and names of the columns
+num_columns = len(df.columns)
+column_names = df.columns.tolist()
+print(f"\nNumber of columns: {num_columns}")
+print("Column names:", column_names)
+
+Slip 14
+Q1. Write a script in R to create a list of employees (name) and perform thefollowing:
+a.Display names of employees in the list.
+b.Add an employee at the end of the list
+c.Remove the third element of the list.	
+:-
+employee_list <- c("sahil", "aditi", "priya", "darshana")
+cat(" Names of employees:\n")
+print(employee_list)
+new_employee <- "pooja"
+employee_list <- c(employee_list, new_employee)
+cat("Names of employees after adding", new_employee, ":\n")
+print(employee_list)
+employee_list <- employee_list[-3]
+cat(" Names of employees after removing the third element:\n")
+print(employee_list)
+
+Q2. Write a Python Programme to apply Apriori algorithm on Groceries dataset. Dataset can be downloaded from
+(https://github.com/amankharwal/Websitedata/blob/master/Groceries _dataset.csv).
+Also display support and confidence for each rule.
+:-
+import pandas as pd
+from mlxtend.frequent_patterns import apriori
+from mlxtend.frequent_patterns import association_rules
+
+# Load the Groceries dataset
+df = pd.read_csv("C:\\Users\\Shweta\\DM_Slips\\Slip14\\groceries.csv")
+
+# Display the first few rows of the dataset
+print("Sample of the Groceries dataset:")
+print(df.head())
+
+# Preprocess the data: Convert the dataset into a one-hot encoded DataFrame
+oht = pd.get_dummies(df, columns=['Member_number'])
+
+# Apply Apriori algorithm to find frequent itemsets
+frequent_itemsets = apriori(oht, min_support=0.02, use_colnames=True)
+
+# Generate association rules
+rules = association_rules(frequent_itemsets, metric='lift', min_threshold=1.0)
+
+# Display frequent itemsets and association rules
+print("\nFrequent Itemsets:")
+print(frequent_itemsets)
+
+print("\nAssociation Rules:")
+print(rules)
+
+Slip 15
+Q1.Write a R program to add, multiply and divide two vectors of integer type.(vector lengthshould be minimum 4)	
+:-
+vector1<-c(1,2,3,4,5)
+vector2<-c(4,5,6,7,8)
+sum<-vector1+vector2
+cat("sum of vector is:",sum,"\n")
+mul<-vector1*vector2
+cat("multiplication",mul,"\n")
+div<-vector1/vector2
+cat("division",div,"\n")
+
+Q2. Write a Python program build Decision Tree Classifier for shows.csv from pandas and 
+predict class label for show starring a 40 years old American comedian, with 10 years of experience, 
+and a comedy ranking of 7? Create a csv file as shown in https://www.w3schools.com/python/python_ml_decision_tree.asp
+:-
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import classification_report, accuracy_score
+import numpy as np
+
+df = pd.read_csv('shows.csv')
+print(df.head())
+
+X = df[['Name','Age', 'Experience']]
+y = df['Label']
+
+# Convert nationality to numerical values
+X['Nationality'] = pd.Categorical(df['Nationality']).codes
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+clf = DecisionTreeClassifier()
+clf.fit(X_train, y_train)
+example = np.array([40, 10, 7, X['Nationality'].max() + 1]).reshape(1, -1)
+predicted_label = clf.predict(example)
+print("Predicted Class Label:", predicted_label[0])
+
+y_pred = clf.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+report = classification_report(y_test, y_pred, target_names=['Not Successful', 'Successful'])
+
+# Save the results to a CSV file
+results = pd.DataFrame({
+    'Actual': y_test,
+    'Predicted': y_pred
+})
+results.to_csv('results.csv', index=False)
+
+print("Accuracy:", accuracy)
+print("Classification Report:\n", report)
+
+
+Slip 16
+Q1. Write a R program to create a simple bar plot of given data
+Year	Export	Import
+2001	26	35
+2002	32	40
+2003	35	50
+:-
+years <- c(2001, 2002, 2003)
+export_data <- c(26, 32, 35)
+import_data <- c(35, 40, 50)
+barplot_heights <- rbind(export_data, import_data)
+barplot(barplot_heights, beside = TRUE, col = c("blue", "green"),
+        names.arg = years, legend.text = c("Export", "Import"),
+        main = "Export and Import Data Over Years",
+        xlab = "Year", ylab = "Value")
+legend("topright", legend = c("Export", "Import"), fill = c("blue", "green"))
+
+Q2. Write a Python program build Decision Tree Classifier using Scikit-learnpackage 
+for diabetes data set (download database from https://www.kaggle.com/uciml/pima-indiansdiabetes-database)	
+:-
+import pandas as pd
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import train_test_split
+from sklearn import metrics
+#import dataset
+dataset= pd.read_csv("diabetes.csv")
+dataset.head()
+#feature Scaling
+feature_cols = ['Pregnancies','Insulin','BMI','Age','Glucose','BloodPressure','DiabetesPedigreeFunction']
+x = dataset[feature_cols]
+y = dataset.Outcome      
+print(x)
+print(y)
+#splitting of dataset into training and test set
+x_train, x_test, y_train, y_test = train_test_split(x,y, test_size=0.3, random_state=1)
+#Creating Decision tree classifier
+classifier = DecisionTreeClassifier() #create decision tree classifier object
+classifier = classifier.fit(x_train,y_train) #train decision tree classifier
+y_pred = classifier.predict(x_test) #predicting the test dataset
+print("Accuracy:", metrics.accuracy_score(y_test,y_pred))
+#creating confusion matrix
+from sklearn.metrics import confusion_matrix
+cm= confusion_matrix(y_test,y_pred)
+print(cm)
+
+Slip 17
+Q1. Write a R program to get the first 20 Fibonacci numbers.
+:-
+fibonacci <- function(n) {
+  if (n == 1) {
+    return(0)
+  } else if (n == 2) {
+    return(1)
+  } else {
+    return(fibonacci(n - 1) + fibonacci(n - 2))
+  }
+}
+fibonacci_numbers <- sapply(1:20, fibonacci)
+print(paste("First 20 Fibonacci numbers:", toString(fibonacci_numbers)))
+
+Q2. Write a python programme to implement multiple linear regression modelfor stock marketdata frame as follows: Stock_Market = {'Year':
+[2017,2017,2017,2017,2017,2017,2017,2017,2017,2017,2017,2017,2
+016,2
+016,20,16,2016,2016,2016,2016,2016,2016,2016,2016,2016],
+'Month': [12, 11,10,9,8,7,6,5,4,3,2,1,12,11,10,9,8,7,6,5,4,3,2,1],
+'Interest_Rate': [2.75,2.5,2.5,2.5,2.5,2.5,2.5,2.25,2.25,2.25,2,2,2,1.75,1.75,1.75,1.75,1.75,1
+.75,1.75,1.75,1.75,1.75,1.75], 'Unemployment_Rate':
+[5.3,5.3,5.3,5.3,5.4,5.6,5.5,5.5,5.5,5.6,5.7,5.9,6,5.9,5.8,6.1,6.2,6.1,6.1,6.1,5
+.9,6.2,6.2,6.1],
+'Stock_Index_Price':
+[1464,1394,1357,1293,1256,1254,1234,1195,1159,1167,1130,1075,1047,
+965,943,958,971,949,884,866,876,822,704,719] }
+And draw a graph of stock market price verses interest rate
+:-
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+
+# Create the Stock_Market dataframe
+Stock_Market = {
+    'Year': [2017, 2017, 2017, 2017, 2017, 2017, 2017, 2017, 2017, 2017, 2017, 2017, 2016, 2016, 2016, 2016, 2016, 2016, 2016, 2016, 2016, 2016, 2016, 2016],
+    'Month': [12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
+    'Interest_Rate': [2.75, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5, 2.25, 2.25, 2.25, 2, 2, 2, 1.75, 1.75, 1.75, 1.75, 1.75, 1.75, 1.75, 1.75, 1.75, 1.75, 1.75],
+    'Unemployment_Rate': [5.3, 5.3, 5.3, 5.3, 5.4, 5.6, 5.5, 5.5, 5.5, 5.6, 5.7, 5.9, 6, 5.9, 5.8, 6.1, 6.2, 6.1, 6.1, 6.1, 5.9, 6.2, 6.2, 6.1],
+    'Stock_Index_Price': [1464, 1394, 1357, 1293, 1256, 1254, 1234, 1195, 1159, 1167, 1130, 1075, 1047, 965, 943, 958, 971, 949, 884, 866, 876, 822, 704, 719]
+}
+
+df = pd.DataFrame(Stock_Market)
+
+# Extract features and target
+X = df[['Interest_Rate']]
+y = df['Stock_Index_Price']
+
+# Create and fit the linear regression model
+model = LinearRegression()
+model.fit(X, y)
+
+# Predict stock prices
+predicted_stock_prices = model.predict(X)
+
+# Plot the graph
+plt.figure(figsize=(8, 6))
+plt.scatter(X, y, color='blue')
+plt.plot(X, predicted_stock_prices, color='red')
+plt.title('Stock Market Price vs. Interest Rate')
+plt.xlabel('Interest Rate')
+plt.ylabel('Stock Index Price')
+plt.show()
+
+Slip 18
+Q1. Write a R program to find the maximum and the minimum value of a given  vector	
+:-my_vector <- c(3,8,1,5,12,7)
+max_value <- max(my_vector)
+ min_value <- min(my_vector)
+ cat("Maximum Value:",max_value,"\n")
+ cat("Minimum Value:",min_value,"\n")
+
+Q2. Consider the following observations/data. And apply simple linear regression and find out estimated coefficients b1 and b1 Also analyse theperformance of the model
+(Use sklearn package) x = np.array([1,2,3,4,5,6,7,8]) y = np.array([7,14,15,18,19,21,26,23])
+:-
+import numpy as np
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import r2_score
+
+# Given data
+x = np.array([1, 2, 3, 4, 5, 6, 7, 8])
+y = np.array([7, 14, 15, 18, 19, 21, 26, 23])
+
+# Create a Linear Regression model
+model = LinearRegression()
+
+# Fit the model to the data
+x = x.reshape(-1, 1)  # Reshape x to be a 2D array
+model.fit(x, y)
+
+# Get the estimated coefficients
+b0 = model.intercept_
+b1 = model.coef_[0]
+
+# Print the estimated coefficients
+print("Estimated coefficient b0 (intercept):", b0)
+print("Estimated coefficient b1 (slope):", b1)
+
+# Analyze the model's performance
+y_pred = model.predict(x)  # Make predictions
+r_squared = r2_score(y, y_pred)  # Calculate R-squared
+print("R-squared (Coefficient of Determination):", r_squared)
+
+Slip 19
+Q1. Write a R program to create a Dataframes which contain details of 5 Studentsand display the details.
+Students contain (Rollno,Studname,Address,Marks)	
+:-
+student_data <- data.frame(
+  Rollno = c(1, 2, 3, 4, 5),
+  Studname = c("Pratiksha", "Sahil", "Pradnya", "Darshana", "Prathmesh"),
+  Address = c("123 pune St", "456 nigdi St", "789 dehu St", "101 nigdi St", "202 akurdi St"),
+  Marks = c(85, 92, 78, 95, 88))
+cat("Student Details:\n")
+print(student_data)
+
+Q2. Write a python program to implement multiple Linear Regression modelfor a car dataset. Dataset can be downloaded from:
+https://www.w3schools.com/python/python_ml_multiple_regression.asp
+:-
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+
+# Load the dataset
+data = pd.read_csv("multiple_Regression.csv")  
+# Make sure to provide the correct path to your dataset
+
+# Select the features (independent variables) and the target variable (dependent variable)
+X = data[[ 'Volume', 'Weight']]
+y = data['CO2']
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Create and fit a multiple linear regression model
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+# Make predictions on the test data
+y_pred = model.predict(X_test)
+
+# Evaluate the model (you can use various metrics)
+from sklearn.metrics import mean_squared_error, r2_score
+
+mse = mean_squared_error(y_test, y_pred)
+r_squared = r2_score(y_test, y_pred)
+
+print("Mean Squared Error:", mse)
+print("R-squared:", r_squared)
+
+# Print the coefficients and intercept
+print("Coefficients:", model.coef_)
+print("Intercept:", model.intercept_)
+
+Slip 20
+Q1. Write a R program to create a data frame from four given vectors.
+:-
+names <- c("Ankita", "rahul", "aditi", "sita")
+ages <- c(25, 30, 22, 28)
+scores <- c(90, 85, 88, 92)
+grades <- c("A", "B", "B+", "A-")
+student_data <- data.frame(
+  Name = names,
+  Age = ages,
+  Score = scores,
+  Grade = grades)
+cat("Student Data Frame:\n")
+print(student_data)
+
+Q2. Write a python program to implement hierarchical Agglomerative clustering algorithm. (Download Customer.csv dataset from github.com).
+:-
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.cluster import AgglomerativeClustering
+from scipy.cluster.hierarchy import dendrogram, linkage
+from sklearn.preprocessing import OneHotEncoder
+data = pd.read_csv("customers.csv")
+features = data[['Milk', 'Fresh']]
+encoder = OneHotEncoder(sparse=False)
+encoded_features = encoder.fit_transform(features)
+n_clusters = 5  
+agglomerative_cluster = AgglomerativeClustering(n_clusters=n_clusters, linkage='ward') 
+clusters = agglomerative_cluster.fit_predict(encoded_features)
+linkage_matrix = linkage(encoded_features, method='ward')
+dendrogram(linkage_matrix)
+plt.show()
+data['Cluster'] = clusters
+print(data[['Frozen', 'Cluster']])
+
+
